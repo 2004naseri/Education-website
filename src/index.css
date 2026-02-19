@@ -1,0 +1,861 @@
+/* ============================================================ */
+/* NurPath — Islamic Education Platform                         */
+/* Design System · Tailwind v4 · index.css                     */
+/* Token naming: --color-X → bg-X / text-X / border-X          */
+/* ============================================================ */
+
+/* ── GOOGLE FONTS ─────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap");
+
+@import "tailwindcss";
+
+/* ============================================================ */
+/* @theme — DESIGN TOKENS                                       */
+/*                                                              */
+/* NAMING RULE:                                                 */
+/*   --color-primary       → bg-primary  text-primary          */
+/*   --color-primary-dark  → bg-primary-dark                   */
+/*   --color-accent-soft   → bg-accent-soft                    */
+/*   --color-base          → text-base   (main body text)      */
+/*   --color-soft          → text-soft   (secondary text)      */
+/*   --color-muted         → text-muted  (captions, meta)      */
+/*   --color-background    → bg-background                     */
+/*   --color-surface       → bg-surface                        */
+/*   --color-card          → bg-card                           */
+/*   --color-border        → border-border                     */
+/*   --color-border-strong → border-border-strong              */
+/* ============================================================ */
+
+@theme {
+  /* ── BRAND GREENS ─────────────────────────────────────── */
+  --color-primary: #1b4332; /* Deep Islamic green      */
+  --color-primary-dark: #143326; /* Darker green on hover   */
+  --color-primary-light: #2d6a4f; /* Lighter green           */
+  --color-primary-soft: #edf7f1; /* Very light green tint   */
+
+  --color-secondary: #2d6a4f; /* Forest green            */
+  --color-secondary-dark: #1b4332;
+  --color-secondary-light: #40916c;
+
+  /* ── ACCENT GOLD ──────────────────────────────────────── */
+  --color-accent: #b5832a; /* Antique gold            */
+  --color-accent-dark: #9a6d20;
+  --color-accent-light: #d4a23a;
+  --color-accent-soft: #f0d9a0; /* Pale gold background    */
+
+  /* ── SURFACES ─────────────────────────────────────────── */
+  --color-background: #f7f3ee; /* Warm parchment          */
+  --color-surface: #ffffff; /* Pure white              */
+  --color-card: #fdfaf6; /* Soft cream cards        */
+  --color-overlay: rgba(27, 67, 50, 0.06);
+
+  /* ── TEXT ─────────────────────────────────────────────── */
+  /* Named without "text-" prefix so classes are: text-base, text-soft, text-muted */
+  --color-base: #1a1a2e; /* Main text → text-base   */
+  --color-soft: #4a5568; /* Body text → text-soft   */
+  --color-muted: #9ca3af; /* Captions → text-muted   */
+  --color-light: #ffffff; /* On dark bg → text-light */
+
+  /* ── BORDERS ──────────────────────────────────────────── */
+  --color-border: #e8dfd0; /* Default border          */
+  --color-border-strong: #c9b89a; /* Emphasized border       */
+
+  /* ── STATUS ───────────────────────────────────────────── */
+  --color-success: #276749;
+  --color-success-soft: #d1fae5;
+  --color-warning: #b45309;
+  --color-warning-soft: #fef3c7;
+  --color-error: #9b1c1c;
+  --color-error-soft: #fee2e2;
+
+  /* ── SHADOWS ──────────────────────────────────────────── */
+  --shadow-sm: 0 1px 3px 0 rgba(27, 67, 50, 0.06);
+  --shadow-md: 0 4px 12px -1px rgba(27, 67, 50, 0.1);
+  --shadow-lg: 0 10px 28px -5px rgba(27, 67, 50, 0.12);
+  --shadow-xl: 0 20px 48px -10px rgba(27, 67, 50, 0.14);
+  --shadow-accent: 0 8px 24px rgba(181, 131, 42, 0.2);
+  --shadow-elegant: 0 15px 40px rgba(27, 67, 50, 0.08);
+
+  /* ── GRADIENTS ────────────────────────────────────────── */
+  --gradient-primary: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    #0d1b13 0%,
+    #1b4332 60%,
+    #2d6a4f 100%
+  );
+  --gradient-accent: linear-gradient(135deg, #b5832a 0%, #d4a23a 100%);
+  --gradient-luxury: linear-gradient(135deg, #1b4332 0%, #b5832a 100%);
+  --gradient-overlay: linear-gradient(
+    to bottom,
+    rgba(27, 67, 50, 0) 0%,
+    rgba(27, 67, 50, 0.85) 100%
+  );
+
+  /* ── Footer — deep ink navy ──────────────────────────── */
+  /* Scholarly, dark, makes gold + white text pop          */
+  --color-footer-bg: #1a1f2e; /* Deep ink navy             */
+  --color-footer-surface: #222840; /* Slightly lighter sections */
+  --color-footer-border: #2e3450; /* Subtle navy border        */
+
+  /* ── Footer — deep ink navy, NOT green ───────────────── */
+  /* Rich dark navy — gold accents pop against it perfectly  */
+  --color-footer-bg: #0f172a; /* Deep navy ink             */
+  --color-footer-surface: #1e2a3a; /* Slightly lighter sections */
+  --color-footer-border: #1e2d45; /* Subtle section dividers   */
+  --color-footer-text: #94a3b8; /* Slate — readable on navy  */
+  --color-footer-heading: #cbd5e1; /* Brighter for column heads */
+
+  /* ── Radius ───────────────────────────────────────────── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* ============================================================ */
+/* DARK MODE — .dark class on <html>                            */
+/* ============================================================ */
+
+/* ============================================================ */
+/* DARK MODE — "Night Manuscript"                               */
+/*                                                              */
+/* Concept: aged ink on dark vellum. Deep charcoal base —      */
+/* NOT green. Warm emerald primary. Candlelight gold accent.   */
+/* Ivory text so Arabic + Hadith read like paper in lamplight. */
+/* ============================================================ */
+.dark {
+  /* ── Primary — warm emerald (NOT neon green) ─────────────
+     Like the green of a scholar's robe under candlelight     */
+  --color-primary: #34a873; /* Warm emerald CTA          */
+  --color-primary-dark: #278a5b; /* Deeper on hover           */
+  --color-primary-light: #52c98e; /* Lighter variant           */
+  --color-primary-soft: #0d2a1c; /* Very dark green tint bg   */
+
+  --color-secondary: #52c98e;
+  --color-secondary-dark: #34a873;
+  --color-secondary-light: #7ddba8;
+
+  /* ── Accent — candlelight gold ───────────────────────────
+     Warm, rich gold — NOT orange. Like illuminated manuscript */
+  --color-accent: #e8b86d; /* Candlelight gold          */
+  --color-accent-dark: #d4a050; /* Deeper gold on hover      */
+  --color-accent-light: #f2cc8a; /* Lighter shimmer           */
+  --color-accent-soft: #2e2010; /* Dark gold-tinted bg       */
+
+  /* ── Surfaces — dark charcoal (NOT green) ────────────────
+     Like aged dark leather and deep ink                      */
+  --color-background: #12100e; /* Deep ink black            */
+  --color-surface: #1c1916; /* Dark charcoal             */
+  --color-card: #242018; /* Slightly lighter card     */
+  --color-overlay: rgba(232, 184, 109, 0.04);
+
+  /* ── Text — ivory/cream for readability ──────────────────
+     Especially important for Arabic Ayat and Hadith text    */
+  --color-base: #f5f0e8; /* Warm ivory — main text    */
+  --color-soft: #c8bfaa; /* Warm gray — secondary     */
+  --color-muted: #7a7060; /* Muted warm — captions     */
+  --color-light: #ffffff; /* Pure white                */
+
+  /* ── Borders — warm charcoal lines ──────────────────────  */
+  --color-border: #2e2a22; /* Subtle warm border        */
+  --color-border-strong: #453e32; /* More visible border       */
+
+  /* ── Status — readable on dark ──────────────────────────  */
+  --color-success: #52c98e; /* Emerald green             */
+  --color-success-soft: #0d2a1c; /* Dark green bg             */
+  --color-warning: #e8b86d; /* Gold = warning            */
+  --color-warning-soft: #2e2010; /* Dark gold bg              */
+  --color-error: #e07070; /* Soft red                  */
+  --color-error-soft: #2a1010; /* Dark red bg               */
+
+  /* ── Footer — near-black in dark mode ───────────────────── */
+  /* Even darker than background — creates clear bottom anchor */
+  --color-footer-bg: #080807; /* Near-black warm           */
+  --color-footer-surface: #111009; /* Slightly lighter          */
+  --color-footer-border: #1e1c14; /* Warm dark divider         */
+  --color-footer-text: #8a8070; /* Warm muted text           */
+  --color-footer-heading: #b0a898; /* Warmer column heads       */
+
+  /* ── Shadows — warm depth ───────────────────────────────  */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 32px -5px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 56px -10px rgba(0, 0, 0, 0.7);
+  --shadow-accent: 0 8px 28px rgba(232, 184, 109, 0.2);
+  --shadow-elegant: 0 15px 48px rgba(0, 0, 0, 0.5);
+
+  /* ── Footer — pure charcoal black in dark mode ──────────
+     Even darker than page bg — creates clear visual boundary */
+  --color-footer-bg: #0a0908; /* Near-black charcoal       */
+  --color-footer-surface: #111009; /* Slightly lighter          */
+  --color-footer-border: #1e1c14; /* Warm dark border          */
+
+  /* ── Gradient ────────────────────────────────────────────  */
+  --gradient-hero: linear-gradient(
+    135deg,
+    #0a0907 0%,
+    #12100e 55%,
+    #1c1916 100%
+  );
+}
+
+/* ============================================================ */
+/* RTL / LTR DIRECTION SYSTEM                                   */
+/* <html lang="fa" dir="rtl"> or <html lang="en" dir="ltr">    */
+/* ============================================================ */
+
+[dir="rtl"] body {
+  font-family: "Noto Naskh Arabic", serif;
+  line-height: 2;
+}
+[dir="rtl"] .font-body {
+  font-family: "Noto Naskh Arabic", serif;
+}
+
+.arabic-text {
+  font-family: "Amiri", serif;
+  direction: rtl;
+  text-align: right;
+  line-height: 2.2;
+}
+.arabic-ui {
+  font-family: "Noto Naskh Arabic", serif;
+  direction: rtl;
+}
+
+/* ============================================================ */
+/* GLOBAL BASE                                                   */
+/* ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-base);
+  overflow-x: hidden;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+::selection {
+  background-color: var(--color-accent-soft);
+  color: var(--color-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================================ */
+/* UTILITY LAYER                                                 */
+/* ============================================================ */
+
+@layer utilities {
+  /* ── FONTS ─────────────────────────────────────────────── */
+  .font-display {
+    font-family: "Cormorant Garamond", serif;
+  }
+  .font-body {
+    font-family: "DM Sans", sans-serif;
+  }
+  .font-arabic {
+    font-family: "Amiri", serif;
+    direction: rtl;
+  }
+  .font-arabic-ui {
+    font-family: "Noto Naskh Arabic", serif;
+    direction: rtl;
+  }
+
+  /* ── HEADINGS ──────────────────────────────────────────── */
+  .heading-hero {
+    font-family: "Cormorant Garamond", serif;
+    @apply text-5xl sm:text-6xl md:text-7xl lg:text-8xl
+           font-light tracking-tight leading-[1.05] text-base;
+  }
+  .heading-xl {
+    font-family: "Cormorant Garamond", serif;
+    @apply text-4xl sm:text-5xl md:text-6xl
+           font-light tracking-tight leading-tight text-base;
+  }
+  .heading-lg {
+    font-family: "Cormorant Garamond", serif;
+    @apply text-3xl sm:text-4xl md:text-5xl
+           font-normal tracking-tight leading-tight text-base;
+  }
+  .heading-md {
+    font-family: "Cormorant Garamond", serif;
+    @apply text-2xl sm:text-3xl md:text-4xl
+           font-normal tracking-tight leading-snug text-base;
+  }
+  .heading-sm {
+    font-family: "Cormorant Garamond", serif;
+    @apply text-xl sm:text-2xl
+           font-normal tracking-tight leading-snug text-base;
+  }
+  .heading-arabic-lg {
+    font-family: "Amiri", serif;
+    direction: rtl;
+    @apply text-2xl sm:text-3xl font-bold leading-[1.8] text-base;
+  }
+
+  /* ── BODY TEXT ─────────────────────────────────────────── */
+  .text-body-lg {
+    font-family: "DM Sans", sans-serif;
+    @apply text-base sm:text-lg leading-[1.8] text-soft;
+  }
+  .text-body {
+    font-family: "DM Sans", sans-serif;
+    @apply text-sm sm:text-base leading-[1.8] text-soft;
+  }
+  .text-body-sm {
+    font-family: "DM Sans", sans-serif;
+    @apply text-xs sm:text-sm leading-relaxed text-muted;
+  }
+
+  /* ── LAYOUT ────────────────────────────────────────────── */
+  .container-custom {
+    @apply w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12;
+  }
+  .section-padding {
+    @apply py-16 sm:py-20 md:py-24 lg:py-28;
+  }
+  .section-padding-sm {
+    @apply py-10 sm:py-14 md:py-16;
+  }
+
+  /* ── BUTTONS ───────────────────────────────────────────── */
+  /* Primary */
+  .btn-primary {
+    font-family: "DM Sans", sans-serif;
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-2.5 text-sm font-semibold tracking-wide
+           bg-primary text-light
+           border border-transparent
+           rounded-[var(--radius-md)]
+           transition-all duration-300
+           hover:bg-primary-dark hover:shadow-lg hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-none
+           focus:outline-none focus-visible:ring-2
+           focus-visible:ring-accent focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed
+           disabled:hover:translate-y-0 disabled:hover:shadow-none;
+  }
+
+  /* Secondary — outlined */
+  .btn-secondary {
+    font-family: "DM Sans", sans-serif;
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-2.5 text-sm font-semibold tracking-wide
+           bg-transparent text-primary
+           border border-primary
+           rounded-[var(--radius-md)]
+           transition-all duration-300
+           hover:bg-primary hover:text-light
+           hover:shadow-md hover:-translate-y-0.5
+           active:translate-y-0
+           focus:outline-none focus-visible:ring-2
+           focus-visible:ring-accent focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Accent — gold */
+  .btn-accent {
+    font-family: "DM Sans", sans-serif;
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-2.5 text-sm font-semibold tracking-wide
+           bg-accent text-base
+           border border-transparent
+           rounded-[var(--radius-md)]
+           transition-all duration-300
+           hover:bg-accent-dark hover:-translate-y-0.5
+           active:translate-y-0
+           focus:outline-none focus-visible:ring-2
+           focus-visible:ring-accent focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Ghost */
+  .btn-ghost {
+    font-family: "DM Sans", sans-serif;
+    @apply inline-flex items-center justify-center gap-2
+           px-4 py-2 text-sm font-medium
+           bg-transparent text-soft
+           border border-transparent
+           rounded-[var(--radius-md)]
+           transition-all duration-200
+           hover:bg-overlay hover:text-base
+           focus:outline-none focus-visible:ring-2
+           focus-visible:ring-accent focus-visible:ring-offset-2;
+  }
+
+  /* Icon button */
+  .btn-icon {
+    @apply inline-flex items-center justify-center
+           w-10 h-10
+           bg-card text-soft
+           border border-border
+           rounded-[var(--radius-md)]
+           transition-all duration-200
+           hover:border-accent hover:text-accent hover:bg-accent-soft
+           focus:outline-none focus-visible:ring-2
+           focus-visible:ring-accent;
+  }
+
+  /* ── CARDS ─────────────────────────────────────────────── */
+  .card {
+    @apply bg-card border border-border
+           rounded-[var(--radius-xl)]
+           transition-all duration-300;
+  }
+  /* card-interactive = card + hover lift — no @apply card  */
+  .card-interactive {
+    @apply bg-card border border-border
+           rounded-[var(--radius-xl)]
+           transition-all duration-300
+           cursor-pointer
+           hover:border-accent-soft
+           hover:shadow-[var(--shadow-lg)]
+           hover:-translate-y-1;
+  }
+
+  /* ── BADGES ────────────────────────────────────────────── */
+  /* Base shared styles — applied to every badge variant     */
+  .badge,
+  .badge-primary,
+  .badge-accent,
+  .badge-success,
+  .badge-warning,
+  .badge-error,
+  .badge-muted {
+    @apply inline-flex items-center gap-1
+           px-2.5 py-0.5
+           text-xs font-semibold
+           rounded-full border
+           whitespace-nowrap;
+    font-family: "DM Sans", sans-serif;
+  }
+  /* Each variant adds its own color on top */
+  .badge-primary {
+    @apply bg-primary-soft  text-primary    border-primary/20;
+  }
+  .badge-accent {
+    @apply bg-accent-soft   text-accent-dark border-accent/20;
+  }
+  .badge-success {
+    @apply bg-success-soft  text-success    border-success/20;
+  }
+  .badge-warning {
+    @apply bg-warning-soft  text-warning    border-warning/20;
+  }
+  .badge-error {
+    @apply bg-error-soft    text-error      border-error/20;
+  }
+  .badge-muted {
+    @apply bg-surface       text-muted      border-border;
+  }
+
+  /* ── INPUT ─────────────────────────────────────────────── */
+  .input {
+    font-family: "DM Sans", sans-serif;
+    @apply w-full px-4 py-3
+           bg-surface text-base text-sm
+           border border-border
+           rounded-[var(--radius-md)]
+           placeholder:text-muted
+           transition-all duration-200
+           outline-none
+           focus:border-primary focus:ring-2 focus:ring-primary/10
+           hover:border-border-strong
+           disabled:opacity-50 disabled:cursor-not-allowed
+           disabled:bg-surface;
+  }
+  [dir="rtl"] .input {
+    text-align: right;
+  }
+  /* input-search = input + left padding for search icon */
+  .input-search {
+    font-family: "DM Sans", sans-serif;
+    @apply w-full pl-11 pr-4 py-3
+           bg-surface text-base text-sm
+           border border-border
+           rounded-[var(--radius-md)]
+           placeholder:text-muted
+           transition-all duration-200
+           outline-none
+           focus:border-primary focus:ring-2 focus:ring-primary/10
+           hover:border-border-strong
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* ── CHIPS ─────────────────────────────────────────────── */
+  /* Base + active share same structure — no cross @apply    */
+  .chip,
+  .chip-active {
+    font-family: "DM Sans", sans-serif;
+    @apply inline-flex items-center gap-1.5
+           px-4 py-1.5 text-sm font-medium
+           rounded-full border
+           cursor-pointer transition-all duration-200
+           select-none;
+  }
+  .chip {
+    @apply border-border bg-card text-soft
+           hover:border-primary hover:text-primary hover:bg-primary-soft;
+  }
+  .chip-active {
+    @apply bg-primary text-light border-primary
+           hover:bg-primary-dark hover:border-primary-dark hover:text-light;
+  }
+
+  /* ── ANIMATIONS ────────────────────────────────────────── */
+  .animate-fade-in {
+    animation: fadeIn 0.7s ease-out both;
+  }
+  .animate-slide-up {
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-slide-left {
+    animation: slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-slide-right {
+    animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-scale-in {
+    animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .stagger-1 {
+    animation-delay: 80ms;
+  }
+  .stagger-2 {
+    animation-delay: 160ms;
+  }
+  .stagger-3 {
+    animation-delay: 240ms;
+  }
+  .stagger-4 {
+    animation-delay: 320ms;
+  }
+  .stagger-5 {
+    animation-delay: 400ms;
+  }
+  .stagger-6 {
+    animation-delay: 480ms;
+  }
+
+  /* ── SPECIAL ───────────────────────────────────────────── */
+  .section-eyebrow {
+    font-family: "Amiri", serif;
+    @apply block text-lg sm:text-xl text-accent mb-2 tracking-wide;
+  }
+
+  .glass {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    @apply bg-surface/75 border border-surface/30;
+  }
+  .dark .glass {
+    @apply bg-surface/80 border-border/50;
+  }
+
+  .pattern-geometric {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B5832A' stroke-width='0.8'%3E%3Cpolygon points='40,4 76,22 76,58 40,76 4,58 4,22'/%3E%3Cpolygon points='40,16 64,28 64,52 40,64 16,52 16,28'/%3E%3Cline x1='40' y1='4' x2='40' y2='76'/%3E%3Cline x1='4' y1='22' x2='76' y2='58'/%3E%3Cline x1='4' y1='58' x2='76' y2='22'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 80px 80px;
+  }
+}
+
+/* ============================================================ */
+/* COMPONENT LAYER                                               */
+/* ============================================================ */
+
+/* ============================================================ */
+/* COMPONENT STYLES — raw CSS only, no @apply cross-layer      */
+/* Tailwind v4 rule: @layer components cannot @apply utilities  */
+/* ============================================================ */
+
+/* ── Spinner ─────────────────────────────────────────────────── */
+.loader {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--color-primary-soft);
+  border-bottom-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 0.9s linear infinite;
+}
+
+.loader-sm {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--color-border);
+  border-bottom-color: var(--color-primary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 0.9s linear infinite;
+}
+
+/* ── Skeleton shimmer ────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-border) 25%,
+    var(--color-border-strong) 50%,
+    var(--color-border) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ── Hadith card — gold left border ─────────────────────────── */
+.hadith-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 2rem;
+  transition: all 0.3s ease;
+}
+.hadith-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+/* Dark: warm parchment bg — like reading by lamplight          */
+.dark .hadith-card {
+  background-color: #1e1a12;
+  border-color: #3a3020;
+  border-left-color: var(--color-accent);
+}
+.dark .hadith-card:hover {
+  background-color: #231f14;
+  box-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(232, 184, 109, 0.12);
+}
+
+/* ── Ayat card — top gold border ────────────────────────────── */
+.ayat-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-accent);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 2rem;
+  transition: all 0.3s ease;
+}
+.ayat-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+/* Dark: deep warm parchment for Ayat readability               */
+.dark .ayat-card {
+  background-color: #1a1710;
+  border-color: #302b1e;
+  border-top-color: var(--color-accent);
+}
+.dark .ayat-card:hover {
+  background-color: #1f1c11;
+  box-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(232, 184, 109, 0.1);
+}
+
+/* ── Arabic text in dark mode — warm ivory, not cold white ──── */
+/* Applies inside Hadith cards, Ayat cards, BismillahBanner      */
+.dark .arabic-text {
+  color: #f5ead6; /* warm ivory — eye-friendly  */
+}
+.dark .font-arabic {
+  color: #f5ead6;
+}
+
+/* ── Grade badges inside dark Hadith cards ───────────────────── */
+.dark .badge-success {
+  background-color: #0d2a1c;
+  color: #52c98e;
+  border-color: rgba(82, 201, 142, 0.2);
+}
+.dark .badge-warning {
+  background-color: #2a1e08;
+  color: #e8b86d;
+  border-color: rgba(232, 184, 109, 0.2);
+}
+.dark .badge-error {
+  background-color: #2a1010;
+  color: #e07070;
+  border-color: rgba(224, 112, 112, 0.2);
+}
+.dark .badge-primary {
+  background-color: #0d2a1c;
+  color: #52c98e;
+  border-color: rgba(52, 168, 115, 0.2);
+}
+.dark .badge-accent {
+  background-color: #2a1e08;
+  color: #e8b86d;
+  border-color: rgba(232, 184, 109, 0.2);
+}
+
+/* ============================================================ */
+/* KEYFRAMES                                                     */
+/* ============================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ============================================================ */
+/* SCROLLBAR                                                     */
+/* ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
+}
+
+/* ============================================================ */
+/* ACCESSIBILITY                                                  */
+/* ============================================================ */
+
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--color-secondary);
+  color: white;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+  z-index: 9999;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 0.25s ease;
+}
+.skip-to-main:focus {
+  top: 1rem;
+}
+
+/* ============================================================ */
+/* PRINT                                                          */
+/* ============================================================ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+}
