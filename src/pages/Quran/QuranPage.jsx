@@ -27,7 +27,7 @@ import { quranService } from "../../services/quran.service";
 import { queryKeys } from "../../services/querykeys";
 
 // ── Components ────────────────────────────────────────────────
-import BismillahBanner from "../../components/sections/BismillahBanner";
+import BismillahBanner from "../../components/sections/Bismillahbanner";
 import SectionTitle from "../../components/sections/SectionTitle";
 import SearchBar from "../../components/ui/SearchBar";
 import AyatCard from "../../components/cards/AyatCard";
