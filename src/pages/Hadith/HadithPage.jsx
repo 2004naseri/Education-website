@@ -23,7 +23,7 @@ import {
   HADITH_TOPICS,
 } from "../../data/hadithCollections";
 
-import BismillahBanner from "../../components/sections/BismillahBanner";
+import BismillahBanner from "../../components/sections/Bismillahbanner";
 import SectionTitle from "../../components/sections/SectionTitle";
 import FilterBar from "../../components/ui/FilterBar";
 import FilterChip from "../../components/ui/FilterChip";

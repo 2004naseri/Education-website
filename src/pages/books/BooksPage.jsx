@@ -29,7 +29,7 @@ import {
 } from "../../data/categories";
 
 // ── Components ────────────────────────────────────────────────
-import BismillahBanner from "../../components/sections/BismillahBanner";
+import BismillahBanner from "../../components/sections/Bismillahbanner";
 import SectionTitle from "../../components/sections/SectionTitle";
 import FilterBar from "../../components/ui/FilterBar";
 import FilterChip from "../../components/ui/FilterChip";
@@ -40,6 +40,7 @@ import { cn } from "../../utils/cn";
 // ── Hooks ─────────────────────────────────────────────────────
 import { useSearch } from "../../hooks/useSearch";
 import { usePagination } from "../../hooks/usePagination";
+import BismillahBanner from "./../../components/sections/Bismillahbanner";
 
 // ── Skeleton grid while loading ───────────────────────────────
 const BooksSkeleton = () => (
