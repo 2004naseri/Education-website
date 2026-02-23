@@ -40,7 +40,6 @@ import { cn } from "../../utils/cn";
 // ── Hooks ─────────────────────────────────────────────────────
 import { useSearch } from "../../hooks/useSearch";
 import { usePagination } from "../../hooks/usePagination";
-import BismillahBanner from "./../../components/sections/Bismillahbanner";
 
 // ── Skeleton grid while loading ───────────────────────────────
 const BooksSkeleton = () => (
