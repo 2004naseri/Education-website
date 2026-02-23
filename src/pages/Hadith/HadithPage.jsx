@@ -15,7 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
 import { hadithService } from "../../services/hadith.service";
-import { queryKeys } from "../../services/queryKeys";
+import { queryKeys } from "../../services/querykeys";
 
 import {
   HADITH_COLLECTIONS,
