@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ChevronLeft, Share2, BookOpen } from "lucide-react";
 
 import { hadithService } from "../../services/hadith.service";
-import { queryKeys } from "../../services/queryKeys";
+import { queryKeys } from "../../services/querykeys";
 import { HADITH_TOPICS } from "../../data/hadithCollections";
 
 import ArabicText from "../../components/sections/ArabicText";
