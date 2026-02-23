@@ -1,8 +1,7 @@
 // src/AppRouter.jsx
 // ============================================================
 // NurPath — Islamic Education Platform
-// Router · SAFE STARTER VERSION
-// Add pages one by one as you create them
+// Router Configuration
 // ============================================================
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -11,20 +10,27 @@ import { Suspense, lazy } from "react";
 // ── Layout ──────────────────────────────────────────────────
 import AppLayout from "./components/layout/AppLayout";
 
-// ── Pages — uncomment each one AFTER you create the file ────
+// ── Pages ───────────────────────────────────────────────────
 const HomePage = lazy(() => import("./pages/Home/HomePage"));
 
 const BooksPage = lazy(() => import("./pages/books/BooksPage"));
-// const BookDetailPage    = lazy(() => import("./pages/Books/BookDetailPage"));
+const BookDetailPage = lazy(() => import("./pages/books/BookDetailPage"));
+const BookReaderPage = lazy(() => import("./pages/books/BookReaderPage"));
+
 const ArticlesPage = lazy(() => import("./pages/ArticlesPage/ArticlesPage"));
-// const ArticleDetailPage = lazy(() => import("./pages/Articles/ArticleDetailPage"));
-// const FiqhPage          = lazy(() => import("./pages/Fiqh/FiqhPage"));
+const ArticleDetailPage = lazy(
+  () => import("./pages/ArticlesPage/ArticleDetailPage"),
+);
+
+const FiqhPage = lazy(() => import("./pages/Fiqh/FiqhPage"));
+const FiqhDetailPage = lazy(() => import("./pages/Fiqh/FiqhDetailPage"));
 const HadithPage = lazy(() => import("./pages/Hadith/HadithPage"));
+const HadithDetailPage = lazy(() => import("./pages/Hadith/HadithDetailPage"));
 const QuranPage = lazy(() => import("./pages/Quran/QuranPage"));
-// const VideosPage        = lazy(() => import("./pages/Videos/VideosPage"));
-// const AboutPage         = lazy(() => import("./pages/About/AboutPage"));
-// const ContactPage       = lazy(() => import("./pages/Contact/ContactPage"));
-// const NotFoundPage      = lazy(() => import("./pages/NotFound/NotFoundPage"));
+const VideosPage = lazy(() => import("./pages/Videos/VideosPage"));
+const AboutPage = lazy(() => import("./pages/About/AboutPage"));
+const ContactPage = lazy(() => import("./pages/Contact/ContactPage"));
+// const NotFoundPage = lazy(() => import("./pages/NotFound/NotFoundPage"));
 
 // ── Fallback loader ─────────────────────────────────────────
 const PageLoader = () => (
@@ -39,13 +45,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <AppLayout />,
     children: [
-      // ✅ ACTIVE — Home
+      // ── Home ───────────────────────────────────────────
       {
         index: true,
         element: <HomePage />,
       },
 
-      // 🔒 LOCKED — uncomment after creating the page file
+      // ── Books ──────────────────────────────────────────
       {
         path: "books",
         element: (
@@ -54,14 +60,16 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      // {
-      //   path: "books/:bookId",
-      //   element: (
-      //     <Suspense fallback={<PageLoader />}>
-      //       <BookDetailPage />
-      //     </Suspense>
-      //   ),
-      // },
+      {
+        path: "books/:id",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <BookDetailPage />
+          </Suspense>
+        ),
+      },
+
+      // ── Articles ───────────────────────────────────────
       {
         path: "articles",
         element: (
@@ -70,8 +78,34 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      // { path: "articles/:slug", element: <Suspense fallback={<PageLoader />}><ArticleDetailPage /></Suspense> },
-      // { path: "fiqh",           element: <Suspense fallback={<PageLoader />}><FiqhPage /></Suspense> },
+      {
+        path: "articles/:slug",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ArticleDetailPage />
+          </Suspense>
+        ),
+      },
+
+      // ── Fiqh ───────────────────────────────────────────
+      {
+        path: "fiqh",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <FiqhPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "fiqh/:slug",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <FiqhDetailPage />
+          </Suspense>
+        ),
+      },
+
+      // ── Hadith ─────────────────────────────────────────
       {
         path: "hadith",
         element: (
@@ -81,6 +115,16 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "hadith/:id",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <HadithDetailPage />
+          </Suspense>
+        ),
+      },
+
+      // ── Quran ──────────────────────────────────────────
+      {
         path: "quran",
         element: (
           <Suspense fallback={<PageLoader />}>
@@ -88,11 +132,57 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      // { path: "videos",         element: <Suspense fallback={<PageLoader />}><VideosPage /></Suspense> },
-      // { path: "about",          element: <Suspense fallback={<PageLoader />}><AboutPage /></Suspense> },
-      // { path: "contact",        element: <Suspense fallback={<PageLoader />}><ContactPage /></Suspense> },
-      // { path: "*",              element: <Suspense fallback={<PageLoader />}><NotFoundPage /></Suspense> },
+      {
+        path: "quran/:surahNumber",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <QuranPage />
+          </Suspense>
+        ),
+      },
+
+      // ── Videos ─────────────────────────────────────────
+      {
+        path: "videos",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <VideosPage />
+          </Suspense>
+        ),
+      },
+
+      // ── About & Contact ────────────────────────────────
+      {
+        path: "about",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AboutPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "contact",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ContactPage />
+          </Suspense>
+        ),
+      },
+
+      // ── 404 ────────────────────────────────────────────
+      // { path: "*", element: <Suspense fallback={<PageLoader />}><NotFoundPage /></Suspense> },
     ],
+  },
+
+  // ── FULLSCREEN ROUTES (no header/footer) ────────────────
+  // Book reader needs fullscreen PDF view
+  {
+    path: "books/:id/read",
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <BookReaderPage />
+      </Suspense>
+    ),
   },
 ]);
 

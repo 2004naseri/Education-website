@@ -38,6 +38,7 @@ const FiqhCard = ({ topic }) => {
 
   const {
     id,
+    slug,
     title,
     titleArabic,
     category,
@@ -48,7 +49,7 @@ const FiqhCard = ({ topic }) => {
 
   return (
     <Link
-      to={`/fiqh/${id}`}
+      to={`/fiqh/${slug}`}
       className="card-interactive group flex flex-col p-5"
       aria-label={`View fiqh topic: ${title}`}
     >

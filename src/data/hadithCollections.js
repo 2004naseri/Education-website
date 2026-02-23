@@ -1,14 +1,9 @@
 // src/data/hadithCollections.js
 // ============================================================
-// Hadith Collections — Single Source of Truth
-//
-// Used by:
-//   • HadithPage.jsx     → collection filter chips
-//   • HadithCard.jsx     → collection label display
-//   • hadith.service.js  → API filter param
+// Hadith Collections + Topics — UPDATED
 // ============================================================
 
-// ── The Six Major Collections (Kutub al-Sittah) ───────────────
+// ── The Six Major Collections ─────────────────────────────────
 export const HADITH_COLLECTIONS = [
   {
     id: "all",
@@ -93,7 +88,23 @@ export const HADITH_COLLECTIONS = [
   },
 ];
 
-// ── Hadith grade options — for filter + badge display ─────────
+// ── Hadith Topics (NEW CATEGORIES) ────────────────────────────
+export const HADITH_TOPICS = [
+  { id: "all", label: "All Topics", labelAr: "كل المواضيع", icon: "📚" },
+  { id: "salah", label: "Prayer", labelAr: "الصلاة", icon: "🕌" },
+  { id: "fasting", label: "Fasting", labelAr: "الصيام", icon: "🌙" },
+  { id: "zakah", label: "Charity", labelAr: "الزكاة", icon: "💰" },
+  { id: "hajj", label: "Hajj", labelAr: "الحج", icon: "🕋" },
+  { id: "character", label: "Character", labelAr: "الأخلاق", icon: "✨" },
+  { id: "knowledge", label: "Knowledge", labelAr: "العلم", icon: "📖" },
+  { id: "faith", label: "Faith", labelAr: "الإيمان", icon: "🌟" },
+  { id: "manners", label: "Manners", labelAr: "الآداب", icon: "🤝" },
+  { id: "family", label: "Family", labelAr: "الأسرة", icon: "👨‍👩‍👧‍👦" },
+  { id: "dua", label: "Supplication", labelAr: "الدعاء", icon: "🤲" },
+  { id: "afterlife", label: "Afterlife", labelAr: "الآخرة", icon: "🌌" },
+];
+
+// ── Hadith grade options ──────────────────────────────────────
 export const HADITH_GRADES = [
   { id: "all", label: "All Grades", badge: "muted" },
   { id: "sahih", label: "Sahih ✓", badge: "success" },
@@ -101,6 +112,9 @@ export const HADITH_GRADES = [
   { id: "daif", label: "Da'if ○", badge: "warning" },
 ];
 
-// ── Helper — get collection by id ─────────────────────────────
+// ── Helper ────────────────────────────────────────────────────
 export const getCollectionById = (id) =>
   HADITH_COLLECTIONS.find((c) => c.id === id) ?? HADITH_COLLECTIONS[0];
+
+export const getTopicById = (id) =>
+  HADITH_TOPICS.find((t) => t.id === id) ?? HADITH_TOPICS[0];
