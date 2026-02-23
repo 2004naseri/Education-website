@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 
 import { articlesService } from "../../services/articles.service";
-import { queryKeys } from "../../services/queryKeys";
+import { queryKeys } from "../../services/querykeys";
 
 import Badge from "../../components/ui/Badge";
 import { cn } from "../../utils/cn";
