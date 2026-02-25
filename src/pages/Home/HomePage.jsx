@@ -296,7 +296,7 @@ const ArticlesSection = () => {
 // ============================================================
 const QuranVerseSection = () => {
   const { data, isLoading } = useQuery({
-    queryKey: queryKeys.quran.search("featured"),
+    queryKey: queryKeys.quran.featured(),
     queryFn: quranService.getFeaturedAyat,
   });
 

@@ -27,7 +27,9 @@ const FiqhDetailPage = lazy(() => import("./pages/Fiqh/FiqhDetailPage"));
 const HadithPage = lazy(() => import("./pages/Hadith/HadithPage"));
 const HadithDetailPage = lazy(() => import("./pages/Hadith/HadithDetailPage"));
 const QuranPage = lazy(() => import("./pages/Quran/QuranPage"));
+const SurahDetailPage = lazy(() => import("./pages/Quran/SurahDetailPage"));
 const VideosPage = lazy(() => import("./pages/Videos/VideosPage"));
+const VideoDetailPage = lazy(() => import("./pages/Videos/VideoDetailPage"));
 const AboutPage = lazy(() => import("./pages/About/AboutPage"));
 const ContactPage = lazy(() => import("./pages/Contact/ContactPage"));
 // const NotFoundPage = lazy(() => import("./pages/NotFound/NotFoundPage"));
@@ -125,7 +127,7 @@ const router = createBrowserRouter([
 
       // ── Quran ──────────────────────────────────────────
       {
-        path: "quran",
+        path: "/quran",
         element: (
           <Suspense fallback={<PageLoader />}>
             <QuranPage />
@@ -133,10 +135,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "quran/:surahNumber",
+        path: "/quran/:surahNumber",
         element: (
           <Suspense fallback={<PageLoader />}>
-            <QuranPage />
+            <SurahDetailPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/quran/:surahNumber/:ayahNumber",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <SurahDetailPage />
           </Suspense>
         ),
       },
@@ -147,6 +157,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <VideosPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "videos/:id",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <VideoDetailPage />
           </Suspense>
         ),
       },

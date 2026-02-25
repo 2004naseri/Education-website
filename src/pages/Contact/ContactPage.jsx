@@ -1,24 +1,23 @@
 // src/pages/Contact/ContactPage.jsx
 // ============================================================
-// ContactPage — NurPath
-//
-// Static contact page with:
-//   - Contact form (email via mailto for now)
-//   - Contact info cards
-//   - Social links
-//   - Map/address section
+// ContactPage — Contact form + social links
 // ============================================================
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { cn } from "../../utils/cn";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  MessageSquare,
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+} from "lucide-react";
+import BismillahBanner from "../../components/sections/BismillahBanner";
 import SectionTitle from "../../components/sections/SectionTitle";
-import { SITE_CONFIG } from "../../data/site";
-import { SOCIAL_LINKS } from "../../data/social";
 
-// ============================================================
-// ContactPage
-// ============================================================
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -27,281 +26,443 @@ const ContactPage = () => {
     message: "",
   });
 
+  const [status, setStatus] = useState({ type: "", message: "" });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Create mailto link with form data
-    const mailtoLink = `mailto:${SITE_CONFIG.email}?subject=${encodeURIComponent(
-      formData.subject || "Contact from NurPath",
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
-    )}`;
-    window.location.href = mailtoLink;
+    setStatus({ type: "loading", message: "Sending..." });
+
+    // Simulate API call (replace with actual backend)
+    setTimeout(() => {
+      setStatus({
+        type: "success",
+        message:
+          "Thank you! Your message has been sent. We'll respond within 24 hours, insha'Allah.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+
+      // Clear success message after 5 seconds
+      setTimeout(() => setStatus({ type: "", message: "" }), 5000);
+    }, 1500);
   };
 
   return (
     <>
-      {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 bg-primary">
-        <div className="container-custom text-center">
-          <h1 className="heading-xl text-snow mb-4">Get in Touch</h1>
-          <p className="font-body text-lg text-snow/70 max-w-2xl mx-auto">
-            Have questions, feedback, or want to contribute? We'd love to hear
-            from you.
-          </p>
-        </div>
-      </section>
+      <BismillahBanner variant="default" />
 
-      <div className="bg-background">
-        <div className="container-custom py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* ── Contact form ──────────────────────────────── */}
-            <div className="lg:col-span-2">
-              <div className="card p-6 sm:p-8">
-                <h2 className="font-display text-2xl font-normal text-ink mb-6">
-                  Send Us a Message
-                </h2>
-
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  {/* Name */}
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block font-body text-sm font-medium text-ink mb-2"
-                    >
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="input"
-                      placeholder="Ahmed Abdullah"
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block font-body text-sm font-medium text-ink mb-2"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="input"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-
-                  {/* Subject */}
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block font-body text-sm font-medium text-ink mb-2"
-                    >
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="input"
-                      placeholder="How can we help?"
-                    />
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block font-body text-sm font-medium text-ink mb-2"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className="input resize-none"
-                      placeholder="Tell us what's on your mind..."
-                    />
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    className="btn-primary inline-flex items-center gap-2"
-                  >
-                    <Send size={16} />
-                    Send Message
-                  </button>
-                </form>
-
-                <p className="font-body text-xs text-muted mt-4">
-                  By submitting this form, your default email client will open
-                  with the message pre-filled.
-                </p>
-              </div>
+      <div className="bg-background min-h-screen">
+        {/* ══ HERO SECTION ══════════════════════════════════ */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-primary to-primary-dark py-20">
+          <div className="absolute inset-0 pattern-geometric opacity-10" />
+          <div className="container-custom relative">
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="font-display text-5xl sm:text-6xl font-normal text-snow mb-6 leading-tight">
+                Get in Touch
+              </h1>
+              <p className="font-body text-xl text-snow/90 leading-relaxed">
+                Questions, feedback, or suggestions? We'd love to hear from you.
+              </p>
             </div>
+          </div>
+        </section>
 
-            {/* ── Contact info sidebar ──────────────────────── */}
-            <div className="space-y-6">
-              {/* Email */}
-              <div className="card p-5">
-                <div className="flex items-start gap-3">
+        {/* ══ CONTACT CONTENT ═══════════════════════════════ */}
+        <section className="section-padding">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+              {/* ── LEFT COLUMN — Contact Info ────────────── */}
+              <div className="lg:col-span-1 space-y-8">
+                <div>
+                  <h2 className="font-display text-2xl font-normal text-ink mb-6">
+                    Contact Information
+                  </h2>
+                  <p className="font-body text-base text-soft leading-relaxed mb-8">
+                    Reach out through any of the channels below. We typically
+                    respond within 24 hours.
+                  </p>
+                </div>
+
+                {/* Contact cards */}
+                <div className="space-y-4">
                   <div
-                    className="w-10 h-10 rounded-lg bg-primary-soft border border-primary/10
-                                  flex items-center justify-center shrink-0"
+                    className="p-5 bg-surface border border-border rounded-[var(--radius-lg)]
+                                  flex items-start gap-4"
                   >
-                    <Mail
-                      size={18}
-                      className="text-primary"
-                      aria-hidden="true"
-                    />
+                    <div
+                      className="w-12 h-12 rounded-lg bg-primary-soft flex items-center 
+                                    justify-center shrink-0"
+                    >
+                      <Mail size={20} className="text-primary" />
+                    </div>
+                    <div>
+                      <p
+                        className="font-body text-sm font-bold text-muted uppercase 
+                                    tracking-wider mb-1"
+                      >
+                        Email
+                      </p>
+                      <a
+                        href="mailto:info@nurpath.org"
+                        className="font-body text-base text-ink hover:text-primary transition-colors"
+                      >
+                        info@nurpath.org
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <p
-                      className="font-body text-xs font-semibold text-muted uppercase
-                                  tracking-wider mb-1"
+
+                  <div
+                    className="p-5 bg-surface border border-border rounded-[var(--radius-lg)]
+                                  flex items-start gap-4"
+                  >
+                    <div
+                      className="w-12 h-12 rounded-lg bg-accent-soft flex items-center 
+                                    justify-center shrink-0"
                     >
-                      Email
-                    </p>
-                    <a
-                      href={`mailto:${SITE_CONFIG.email}`}
-                      className="font-body text-sm text-ink hover:text-primary transition-colors"
+                      <Phone size={20} className="text-accent" />
+                    </div>
+                    <div>
+                      <p
+                        className="font-body text-sm font-bold text-muted uppercase 
+                                    tracking-wider mb-1"
+                      >
+                        Phone
+                      </p>
+                      <a
+                        href="tel:+93123456789"
+                        className="font-body text-base text-ink hover:text-primary transition-colors"
+                      >
+                        +93 (123) 456-789
+                      </a>
+                    </div>
+                  </div>
+
+                  <div
+                    className="p-5 bg-surface border border-border rounded-[var(--radius-lg)]
+                                  flex items-start gap-4"
+                  >
+                    <div
+                      className="w-12 h-12 rounded-lg bg-success-soft flex items-center 
+                                    justify-center shrink-0"
                     >
-                      {SITE_CONFIG.email}
-                    </a>
+                      <MapPin size={20} className="text-success" />
+                    </div>
+                    <div>
+                      <p
+                        className="font-body text-sm font-bold text-muted uppercase 
+                                    tracking-wider mb-1"
+                      >
+                        Location
+                      </p>
+                      <p className="font-body text-base text-ink">
+                        Kabul, Afghanistan
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Phone */}
-              <div className="card p-5">
-                <div className="flex items-start gap-3">
-                  <div
-                    className="w-10 h-10 rounded-lg bg-primary-soft border border-primary/10
-                                  flex items-center justify-center shrink-0"
-                  >
-                    <Phone
-                      size={18}
-                      className="text-primary"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div>
-                    <p
-                      className="font-body text-xs font-semibold text-muted uppercase
-                                  tracking-wider mb-1"
-                    >
-                      Phone
-                    </p>
-                    <a
-                      href={`tel:${SITE_CONFIG.phone}`}
-                      className="font-body text-sm text-ink hover:text-primary transition-colors"
-                    >
-                      {SITE_CONFIG.phone}
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Address */}
-              <div className="card p-5">
-                <div className="flex items-start gap-3">
-                  <div
-                    className="w-10 h-10 rounded-lg bg-primary-soft border border-primary/10
-                                  flex items-center justify-center shrink-0"
-                  >
-                    <MapPin
-                      size={18}
-                      className="text-primary"
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div>
-                    <p
-                      className="font-body text-xs font-semibold text-muted uppercase
-                                  tracking-wider mb-1"
-                    >
-                      Location
-                    </p>
-                    <p className="font-body text-sm text-ink leading-relaxed">
-                      {SITE_CONFIG.address}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social links */}
-              {SOCIAL_LINKS.length > 0 && (
-                <div className="card p-5">
-                  <p
-                    className="font-body text-xs font-semibold text-muted uppercase
-                                tracking-wider mb-3"
+                {/* Social Media */}
+                <div>
+                  <h3
+                    className="font-body text-sm font-bold text-muted uppercase 
+                                tracking-wider mb-4"
                   >
                     Follow Us
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {SOCIAL_LINKS.map((social) => (
-                      <a
-                        key={social.label}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                        className="w-9 h-9 rounded-lg bg-primary-soft border border-primary/10
-                                   flex items-center justify-center text-primary
-                                   hover:bg-primary hover:text-snow hover:border-primary
-                                   transition-all duration-200"
-                      >
-                        <span className="text-sm" aria-hidden="true">
-                          {social.icon}
-                        </span>
-                      </a>
-                    ))}
+                  </h3>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="https://facebook.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-11 h-11 rounded-full bg-surface border border-border
+                                  flex items-center justify-center text-muted
+                                  hover:bg-primary hover:text-snow hover:border-primary
+                                  transition-all duration-200"
+                      aria-label="Facebook"
+                    >
+                      <Facebook size={18} />
+                    </a>
+                    <a
+                      href="https://twitter.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-11 h-11 rounded-full bg-surface border border-border
+                                  flex items-center justify-center text-muted
+                                  hover:bg-primary hover:text-snow hover:border-primary
+                                  transition-all duration-200"
+                      aria-label="Twitter"
+                    >
+                      <Twitter size={18} />
+                    </a>
+                    <a
+                      href="https://instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-11 h-11 rounded-full bg-surface border border-border
+                                  flex items-center justify-center text-muted
+                                  hover:bg-primary hover:text-snow hover:border-primary
+                                  transition-all duration-200"
+                      aria-label="Instagram"
+                    >
+                      <Instagram size={18} />
+                    </a>
+                    <a
+                      href="https://youtube.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-11 h-11 rounded-full bg-surface border border-border
+                                  flex items-center justify-center text-muted
+                                  hover:bg-primary hover:text-snow hover:border-primary
+                                  transition-all duration-200"
+                      aria-label="YouTube"
+                    >
+                      <Youtube size={18} />
+                    </a>
                   </div>
                 </div>
-              )}
+              </div>
 
-              {/* Office hours */}
-              <div className="card p-5 bg-accent-soft border-accent/20">
-                <p
-                  className="font-body text-xs font-semibold text-accent-dark uppercase
-                              tracking-wider mb-3"
-                >
-                  Office Hours
-                </p>
-                <div className="space-y-2 font-body text-sm text-soft">
-                  <p>Saturday - Thursday: 9:00 AM - 5:00 PM</p>
-                  <p>Friday: Closed</p>
-                  <p className="text-xs text-muted mt-2">
-                    Afghanistan Time (UTC+4:30)
-                  </p>
+              {/* ── RIGHT COLUMN — Contact Form ───────────── */}
+              <div className="lg:col-span-2">
+                <div className="p-8 bg-card border border-border rounded-[var(--radius-2xl)]">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
+                      <MessageSquare size={24} className="text-snow" />
+                    </div>
+                    <div>
+                      <h2 className="font-display text-2xl font-normal text-ink">
+                        Send us a Message
+                      </h2>
+                      <p className="font-body text-sm text-muted">
+                        We'll get back to you within 24 hours
+                      </p>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Name */}
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="font-body text-sm font-semibold text-ink mb-2 block"
+                      >
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 bg-background border border-border 
+                                   rounded-[var(--radius-md)] font-body text-base text-ink
+                                   focus:outline-none focus:ring-2 focus:ring-primary/20 
+                                   focus:border-primary transition-all"
+                        placeholder="Your full name"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="font-body text-sm font-semibold text-ink mb-2 block"
+                      >
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 bg-background border border-border 
+                                   rounded-[var(--radius-md)] font-body text-base text-ink
+                                   focus:outline-none focus:ring-2 focus:ring-primary/20 
+                                   focus:border-primary transition-all"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+
+                    {/* Subject */}
+                    <div>
+                      <label
+                        htmlFor="subject"
+                        className="font-body text-sm font-semibold text-ink mb-2 block"
+                      >
+                        Subject *
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 bg-background border border-border 
+                                   rounded-[var(--radius-md)] font-body text-base text-ink
+                                   focus:outline-none focus:ring-2 focus:ring-primary/20 
+                                   focus:border-primary transition-all"
+                        placeholder="What is this about?"
+                      />
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="font-body text-sm font-semibold text-ink mb-2 block"
+                      >
+                        Message *
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={6}
+                        className="w-full px-4 py-3 bg-background border border-border 
+                                   rounded-[var(--radius-md)] font-body text-base text-ink
+                                   focus:outline-none focus:ring-2 focus:ring-primary/20 
+                                   focus:border-primary transition-all resize-none"
+                        placeholder="Tell us more..."
+                      />
+                    </div>
+
+                    {/* Status Message */}
+                    {status.message && (
+                      <div
+                        className={`p-4 rounded-[var(--radius-lg)] ${
+                          status.type === "success"
+                            ? "bg-success-soft border border-success/20 text-success"
+                            : status.type === "error"
+                              ? "bg-error-soft border border-error/20 text-error"
+                              : "bg-primary-soft border border-primary/20 text-primary"
+                        }`}
+                      >
+                        <p className="font-body text-sm">{status.message}</p>
+                      </div>
+                    )}
+
+                    {/* Submit Button */}
+                    <button
+                      type="submit"
+                      disabled={status.type === "loading"}
+                      className="btn-primary w-full justify-center disabled:opacity-50 
+                                 disabled:cursor-not-allowed"
+                    >
+                      {status.type === "loading" ? (
+                        <>
+                          <div
+                            className="w-4 h-4 border-2 border-snow border-t-transparent 
+                                        rounded-full animate-spin"
+                          />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={16} />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* ══ FAQ SECTION ═══════════════════════════════════ */}
+        <section className="section-padding bg-surface">
+          <div className="container-custom">
+            <div className="max-w-3xl mx-auto">
+              <SectionTitle
+                eyebrow="COMMON QUESTIONS"
+                title="Before You Reach Out"
+                align="center"
+                className="mb-12"
+              />
+
+              <div className="space-y-4">
+                <details className="p-6 bg-background border border-border rounded-[var(--radius-lg)] group">
+                  <summary
+                    className="font-body text-base font-semibold text-ink cursor-pointer 
+                                      flex items-center justify-between"
+                  >
+                    How can I contribute content to NurPath?
+                    <span className="text-muted group-open:rotate-180 transition-transform">
+                      ▼
+                    </span>
+                  </summary>
+                  <p className="font-body text-base text-soft leading-relaxed mt-4">
+                    We welcome contributions from qualified scholars and
+                    educators. Please email us at contributions@nurpath.org with
+                    your credentials and proposed content.
+                  </p>
+                </details>
+
+                <details className="p-6 bg-background border border-border rounded-[var(--radius-lg)] group">
+                  <summary
+                    className="font-body text-base font-semibold text-ink cursor-pointer 
+                                      flex items-center justify-between"
+                  >
+                    Is NurPath really free?
+                    <span className="text-muted group-open:rotate-180 transition-transform">
+                      ▼
+                    </span>
+                  </summary>
+                  <p className="font-body text-base text-soft leading-relaxed mt-4">
+                    Yes! All our resources are completely free. We believe
+                    Islamic knowledge should never be behind a paywall. We're
+                    supported by donations from the Muslim community.
+                  </p>
+                </details>
+
+                <details className="p-6 bg-background border border-border rounded-[var(--radius-lg)] group">
+                  <summary
+                    className="font-body text-base font-semibold text-ink cursor-pointer 
+                                      flex items-center justify-between"
+                  >
+                    Can I request specific topics or books?
+                    <span className="text-muted group-open:rotate-180 transition-transform">
+                      ▼
+                    </span>
+                  </summary>
+                  <p className="font-body text-base text-soft leading-relaxed mt-4">
+                    Absolutely! Use the contact form above to suggest topics,
+                    books, or features you'd like to see. We prioritize content
+                    based on community requests.
+                  </p>
+                </details>
+
+                <details className="p-6 bg-background border border-border rounded-[var(--radius-lg)] group">
+                  <summary
+                    className="font-body text-base font-semibold text-ink cursor-pointer 
+                                      flex items-center justify-between"
+                  >
+                    How do I report an error?
+                    <span className="text-muted group-open:rotate-180 transition-transform">
+                      ▼
+                    </span>
+                  </summary>
+                  <p className="font-body text-base text-soft leading-relaxed mt-4">
+                    If you find any errors in our content, please email us
+                    immediately at corrections@nurpath.org with the page link
+                    and description of the error. We take accuracy very
+                    seriously.
+                  </p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

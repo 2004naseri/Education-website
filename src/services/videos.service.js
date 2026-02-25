@@ -1,92 +1,120 @@
 // src/services/videos.service.js
 // ============================================================
-// Videos Service — NurPath (Mock Data)
+// Videos Service — UPDATED with detail method & sample data
 // ============================================================
 
 import { mockDelay } from "./axios";
 
 const MOCK_VIDEOS = [
   {
-    id: "1",
-    title: "Understanding Surah Al-Fatiha — Deep Tafsir",
-    titleArabic: "فهم سورة الفاتحة — تفسير عميق",
-    description:
-      "A profound explanation of the opening chapter of the Quran, covering its meanings, virtues, and spiritual significance.",
-    thumbnail:
-      "https://placehold.co/640x360/1b4332/f0d9a0?text=Surah+Al-Fatiha",
-    videoUrl: "https://www.youtube.com/embed/example1",
-    duration: "42:15",
-    category: "quran",
-    instructor: "Sheikh Abdullah al-Farsi",
-    views: 8400,
-    publishedAt: "2024-10-05",
-    featured: true,
-    tags: ["tafsir", "quran", "fatiha"],
-  },
-  {
-    id: "2",
-    title: "The Life of Prophet Ibrahim (AS)",
-    titleArabic: "حياة النبي إبراهيم عليه السلام",
-    description:
-      "An inspiring series on the life of Prophet Ibrahim, the Friend of Allah, and the lessons we can draw for our lives today.",
-    thumbnail:
-      "https://placehold.co/640x360/1b4332/f0d9a0?text=Prophet+Ibrahim",
-    videoUrl: "https://www.youtube.com/embed/example2",
-    duration: "58:30",
-    category: "series",
-    instructor: "Dr. Ahmad Karimi",
-    views: 6200,
-    publishedAt: "2024-10-18",
-    featured: true,
-    tags: ["seerah", "prophets", "ibrahim"],
-  },
-  {
-    id: "3",
-    title: "How to Perfect Your Salah",
-    titleArabic: "كيف تتقن صلاتك",
-    description:
-      "Step-by-step guidance on performing salah correctly — from wudu to tashahhud — based on the Sunnah of the Prophet ﷺ.",
-    thumbnail: "https://placehold.co/640x360/1b4332/f0d9a0?text=Perfect+Salah",
-    videoUrl: "https://www.youtube.com/embed/example3",
-    duration: "35:00",
+    id: "video_001",
+    title: "The Life of Prophet Muhammad ﷺ - Complete Seerah",
+    titleArabic: "سيرة النبي محمد صلى الله عليه وسلم",
+    description: `Join us for a comprehensive journey through the life of Prophet Muhammad ﷺ, from his birth in Mecca to his final days in Medina.
+
+This series covers:
+- Early life and childhood
+- The first revelation in Cave Hira
+- The Meccan period and persecution
+- The Hijrah to Medina
+- Major battles and treaties
+- The conquest of Mecca
+- Final sermon and legacy
+
+Perfect for those wanting to understand the Prophet's life in depth.`,
+    instructor: "Sheikh Omar Suleiman",
+    instructorBio: "Islamic scholar and president of the Yaqeen Institute",
     category: "lecture",
-    instructor: "Ustadh Ibrahim Noori",
-    views: 11300,
-    publishedAt: "2024-09-22",
-    featured: true,
-    tags: ["salah", "prayer", "fiqh"],
+    thumbnail:
+      "https://images.unsplash.com/photo-1591604466107-ec97de05596a?w=800&h=450&fit=crop",
+    videoUrl: "https://www.youtube.com/embed/XLVgg4F1ONM", // Example embed
+    duration: "45:32",
+    views: 125000,
+    publishedAt: "2024-01-15",
+    chapters: [
+      { timestamp: "0:00", title: "Introduction" },
+      { timestamp: "3:15", title: "Birth and Early Life" },
+      { timestamp: "12:30", title: "The First Revelation" },
+      { timestamp: "25:45", title: "Persecution in Mecca" },
+      { timestamp: "38:20", title: "The Hijrah" },
+    ],
+    tags: ["seerah", "prophet", "biography", "history", "islamic-history"],
   },
   {
-    id: "4",
-    title: "10 Lessons from Surah Al-Kahf",
-    titleArabic: "10 دروس من سورة الكهف",
-    description:
-      "Every Friday Muslims are encouraged to recite Surah Al-Kahf. Discover the 10 powerful lessons this chapter holds for our times.",
-    thumbnail: "https://placehold.co/640x360/1b4332/f0d9a0?text=Surah+Al-Kahf",
-    videoUrl: "https://www.youtube.com/embed/example4",
-    duration: "28:45",
+    id: "video_002",
+    title: "Understanding Tawheed - The Oneness of Allah",
+    titleArabic: "فهم التوحيد - وحدانية الله",
+    description: `A comprehensive explanation of Tawheed, the fundamental concept in Islam.
+
+Topics covered:
+- Definition and importance of Tawheed
+- The three categories: Tawheed ar-Rububiyyah, al-Uluhiyyah, al-Asma was-Sifat
+- Common misconceptions
+- Practical application in daily life
+
+Essential knowledge for every Muslim.`,
+    instructor: "Dr. Yasir Qadhi",
+    instructorBio: "Dean of Academic Affairs at Al-Maghrib Institute",
+    category: "lecture",
+    thumbnail:
+      "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=800&h=450&fit=crop",
+    videoUrl: "/public/video/video.mp4", // No embed = shows thumbnail with play button
+    duration: "1:12:45",
+    views: 89000,
+    publishedAt: "2024-02-20",
+    chapters: [
+      { timestamp: "0:00", title: "What is Tawheed?" },
+      { timestamp: "8:30", title: "The Three Categories" },
+      { timestamp: "28:15", title: "Tawheed ar-Rububiyyah" },
+      { timestamp: "45:00", title: "Tawheed al-Uluhiyyah" },
+      { timestamp: "58:30", title: "Tawheed al-Asma was-Sifat" },
+    ],
+    tags: ["tawheed", "aqeedah", "theology", "fundamentals"],
+  },
+  {
+    id: "video_003",
+    title: "Beautiful Quran Recitation - Surah Ar-Rahman",
+    titleArabic: "تلاوة جميلة - سورة الرحمن",
+    description: `Experience the beauty of Surah Ar-Rahman recited with perfect tajweed.
+
+This surah is known as "the beauty of the Quran" and reminds us of Allah's countless blessings.
+
+Reciter: Sheikh Mishary Rashid Alafasy`,
+    instructor: "Sheikh Mishary Rashid Alafasy",
+    instructorBio: "Renowned Quran reciter from Kuwait",
+    category: "quran",
+    thumbnail:
+      "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=800&h=450&fit=crop",
+    videoUrl: "",
+    duration: "18:23",
+    views: 245000,
+    publishedAt: "2023-12-10",
+    tags: ["quran", "recitation", "surah-rahman", "tajweed"],
+  },
+  {
+    id: "video_004",
+    title: "How to Pray - Step by Step Guide",
+    titleArabic: "كيفية الصلاة - دليل خطوة بخطوة",
+    description: `Learn how to perform Salah correctly with this detailed step-by-step guide.
+
+Covers:
+- Wudu (ablution)
+- Conditions of prayer
+- Fard, Sunnah, and Nafl prayers
+- Common mistakes to avoid
+- Tips for concentration
+
+Perfect for new Muslims or anyone wanting to perfect their prayer.`,
+    instructor: "Ustadh Nouman Ali Khan",
+    instructorBio: "Founder and CEO of Bayyinah Institute",
     category: "short",
-    instructor: "Sheikh Abdullah al-Farsi",
-    views: 9700,
-    publishedAt: "2024-11-01",
-    featured: false,
-    tags: ["quran", "kahf", "friday"],
-  },
-  {
-    id: "5",
-    title: "Ramadan: A Complete Spiritual Guide",
-    titleArabic: "رمضان: دليل روحي كامل",
-    description:
-      "Prepare for the blessed month with this comprehensive guide covering fasting rules, night prayers, Quran, charity, and spiritual goals.",
-    thumbnail: "https://placehold.co/640x360/1b4332/f0d9a0?text=Ramadan+Guide",
-    videoUrl: "https://www.youtube.com/embed/example5",
-    duration: "1:12:00",
-    category: "series",
-    instructor: "Dr. Fatima Rahimi",
-    views: 14500,
-    publishedAt: "2024-12-01",
-    featured: false,
-    tags: ["ramadan", "fasting", "spirituality"],
+    thumbnail:
+      "https://images.unsplash.com/photo-1591604466107-ec97de05596a?w=800&h=450&fit=crop",
+    videoUrl: "",
+    duration: "12:15",
+    views: 178000,
+    publishedAt: "2024-03-05",
+    tags: ["prayer", "salah", "worship", "how-to", "tutorial"],
   },
 ];
 
@@ -110,7 +138,9 @@ export const videosService = {
       results = results.filter(
         (v) =>
           v.title.toLowerCase().includes(q) ||
+          v.titleArabic?.includes(q) ||
           v.description.toLowerCase().includes(q) ||
+          v.instructor.toLowerCase().includes(q) ||
           v.tags.some((t) => t.includes(q)),
       );
     }
@@ -135,8 +165,8 @@ export const videosService = {
   },
 
   getFeatured: async () => {
-    await mockDelay(350);
-    const data = MOCK_VIDEOS.filter((v) => v.featured).slice(0, 3);
+    await mockDelay(400);
+    const data = MOCK_VIDEOS.slice(0, 3);
     return { success: true, data };
   },
 };
