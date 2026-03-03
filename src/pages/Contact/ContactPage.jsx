@@ -15,8 +15,8 @@ import {
   Instagram,
   Youtube,
 } from "lucide-react";
-import BismillahBanner from "../../components/sections/BismillahBanner";
 import SectionTitle from "../../components/sections/SectionTitle";
+import BismillahBanner from "../../components/sections/BismillahBanner";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
