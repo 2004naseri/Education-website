@@ -4,8 +4,9 @@
 // ============================================================
 
 import { BookOpen, Heart, Users, Globe, Target, Award } from "lucide-react";
-import BismillahBanner from "../../components/sections/BismillahBanner";
+
 import SectionTitle from "../../components/sections/SectionTitle";
+import BismillahBanner from "../../components/sections/BismillahBanner";
 
 const AboutPage = () => {
   return (
