@@ -128,7 +128,7 @@ Only Allah knows with certainty. Possible wisdoms:
 2. Proof of Quran's inimitability — made from same letters they use
 3. Among the unseen knowledge
 
-After these letters, Allah mentions "THE BOOK" — as if to say: "This Quran is made from these simple letters (Alif, Lam, Meem), yet you cannot produce anything like it."`,
+After these letters, Allah mentions "THE BOOK"- as if to say: "This Quran is made from these simple letters (Alif, Lam, Meem), yet you cannot produce anything like it."`,
     },
     // Generate placeholders for ayat 2-254
     ...Array.from({ length: 253 }, (_, i) => ({
