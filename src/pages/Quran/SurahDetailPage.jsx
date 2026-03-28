@@ -20,7 +20,7 @@ import {
 import { quranService } from "../../services/quran.service";
 import { queryKeys } from "../../services/querykeys";
 
-import BismillahBanner from "../../components/sections/BismillahBanner";
+import BismillahBanner from "../../components/sections/Bismillahbanner";
 import ArabicText from "../../components/sections/ArabicText";
 import Badge from "../../components/ui/Badge";
 import { cn } from "../../utils/cn";
