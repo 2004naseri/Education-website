@@ -6,7 +6,7 @@
 import { BookOpen, Heart, Users, Globe, Target, Award } from "lucide-react";
 
 import SectionTitle from "../../components/sections/SectionTitle";
-import BismillahBanner from "../../components/sections/BismillahBanner";
+import BismillahBanner from "../../components/sections/Bismillahbanner";
 
 const AboutPage = () => {
   return (
