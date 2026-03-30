@@ -36,8 +36,8 @@ import MobileMenu from "./Mobilemenu.jsx";
 // Defined here — single source of language config
 const LANGUAGES = [
   { code: "en", label: "EN", dir: "ltr", full: "English" },
-  { code: "fa", label: "FA", dir: "rtl", full: "دری" },
-  { code: "ps", label: "PS", dir: "rtl", full: "پښتو" },
+  // { code: "fa", label: "FA", dir: "rtl", full: "دری" },
+  // { code: "ps", label: "PS", dir: "rtl", full: "پښتو" },
 ];
 
 // ── Header ────────────────────────────────────────────────────
@@ -52,7 +52,9 @@ const Header = () => {
 
   // ── Dropdown open (desktop nav) ───────────────────────────
   const [openDropdown, setOpenDropdown] = useState(null);
-  const dropdownRef = useRef(null);
+  // ── Dropdown refs ─────────────────────────────
+  const desktopDropdownRef = useRef(null); // for nav links dropdown
+  const langDropdownRef = useRef(null); // for language dropdown
 
   // ── Lang dropdown ─────────────────────────────────────────
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -92,11 +94,17 @@ const Header = () => {
   // ── Click outside closes dropdowns ───────────────────────
   useEffect(() => {
     const onClick = (e) => {
-      if (!dropdownRef.current?.contains(e.target)) {
+      // Close desktop nav dropdown if clicked outside
+      if (!desktopDropdownRef.current?.contains(e.target)) {
         setOpenDropdown(null);
+      }
+
+      // Close language dropdown if clicked outside
+      if (!langDropdownRef.current?.contains(e.target)) {
         setIsLangOpen(false);
       }
     };
+
     document.addEventListener("mousedown", onClick);
     return () => document.removeEventListener("mousedown", onClick);
   }, []);
@@ -188,7 +196,7 @@ const Header = () => {
             <nav
               aria-label="Main navigation"
               className="hidden lg:flex items-center gap-1"
-              ref={dropdownRef}
+              ref={desktopDropdownRef} // NEW
             >
               {NAVIGATION.map((item) => {
                 const hasChildren = item.children?.length > 0;
@@ -314,7 +322,7 @@ const Header = () => {
               </button>
 
               {/* ── Language switcher ──────────────────────── */}
-              <div className="relative" ref={dropdownRef}>
+              <div className="relative" ref={langDropdownRef}>
                 <button
                   type="button"
                   aria-label="Switch language"

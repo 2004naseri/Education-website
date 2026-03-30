@@ -13,8 +13,8 @@ import { useSearchParams } from "react-router-dom";
 
 import { fiqhService } from "../../services/fiqh.service";
 import { queryKeys } from "../../services/querykeys";
-
-import { FIQH_CATEGORIES, FIQH_MADHABS } from "../../data/fiqhCategories";
+import { useScrollToContent } from "../../hooks/useScrollToContent";
+import { FIQH_CATEGORIES } from "../../data/fiqhCategories";
 
 import BismillahBanner from "../../components/sections/Bismillahbanner";
 import SectionTitle from "../../components/sections/SectionTitle";
@@ -56,7 +56,7 @@ const EmptyState = ({ search, onClear }) => (
 // ============================================================
 const FiqhPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const { contentRef, scrollToContent } = useScrollToContent();
   // ── Read filters from URL ─────────────────────────────────
   const category = searchParams.get("category") || "all";
   const madhab = searchParams.get("madhab") || "all";
@@ -73,6 +73,7 @@ const FiqhPage = () => {
     }
     newParams.delete("page"); // Reset to page 1
     setSearchParams(newParams);
+    scrollToContent();
   };
 
   const updateSearch = (value) => {
@@ -84,6 +85,7 @@ const FiqhPage = () => {
     }
     newParams.delete("page");
     setSearchParams(newParams);
+    scrollToContent();
   };
 
   const goToPage = (newPage) => {
@@ -94,6 +96,7 @@ const FiqhPage = () => {
       newParams.set("page", String(newPage));
     }
     setSearchParams(newParams);
+    scrollToContent();
   };
 
   const clearAll = () => {
@@ -126,11 +129,7 @@ const FiqhPage = () => {
       label: FIQH_CATEGORIES.find((c) => c.id === category)?.label ?? category,
       onRemove: () => updateFilter("category", "all"),
     },
-    madhab !== "all" && {
-      id: "madhab",
-      label: FIQH_MADHABS.find((m) => m.id === madhab)?.label ?? madhab,
-      onRemove: () => updateFilter("madhab", "all"),
-    },
+
     search && {
       id: "search",
       label: `"${search}"`,
@@ -222,33 +221,6 @@ const FiqhPage = () => {
             </div>
           </div>
 
-          {/* ── Madhab filter ─────────────────────────────── */}
-          <div className="mb-6">
-            <p
-              className="font-body text-xs font-bold text-muted uppercase
-                          tracking-widest mb-3"
-            >
-              Madhab (School of Thought)
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {FIQH_MADHABS.map((m) => (
-                <button
-                  key={m.id}
-                  type="button"
-                  onClick={() => updateFilter("madhab", m.id)}
-                  className={cn(
-                    "font-body text-sm px-4 py-1.5 rounded-full border transition-all duration-200",
-                    madhab === m.id
-                      ? "bg-primary text-snow border-primary"
-                      : "bg-surface text-soft border-border hover:border-primary hover:text-primary",
-                  )}
-                >
-                  {m.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* ── Search bar ────────────────────────────────── */}
           <div className="mb-6">
             <FilterBar
@@ -298,7 +270,10 @@ const FiqhPage = () => {
           ) : (
             <>
               {/* Topics grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div
+                ref={contentRef}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+              >
                 {topics.map((topic, i) => (
                   <div
                     key={topic.id}

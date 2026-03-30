@@ -13,7 +13,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-
+import { useScrollToContent } from "../../hooks/useScrollToContent";
 import { hadithService } from "../../services/hadith.service";
 import { queryKeys } from "../../services/querykeys";
 
@@ -66,7 +66,7 @@ const EmptyState = ({ search, onClear }) => (
 // ============================================================
 const HadithPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const { contentRef, scrollToContent } = useScrollToContent();
   // ── Read filters from URL ─────────────────────────────────
   const collection = searchParams.get("collection") || "all";
   const grade = searchParams.get("grade") || "all";
@@ -85,6 +85,7 @@ const HadithPage = () => {
     // Reset to page 1 when filter changes
     newParams.delete("page");
     setSearchParams(newParams);
+    scrollToContent();
   };
 
   const updateSearch = (value) => {
@@ -96,6 +97,7 @@ const HadithPage = () => {
     }
     newParams.delete("page");
     setSearchParams(newParams);
+    scrollToContent();
   };
 
   const goToPage = (newPage) => {
@@ -106,6 +108,7 @@ const HadithPage = () => {
       newParams.set("page", String(newPage));
     }
     setSearchParams(newParams);
+    scrollToContent();
   };
 
   const clearAll = () => {
@@ -351,7 +354,7 @@ const HadithPage = () => {
             <EmptyState search={search} onClear={clearAll} />
           ) : (
             <>
-              <div className="space-y-5">
+              <div ref={contentRef} className="space-y-5">
                 {hadith.map((h, i) => (
                   <div
                     key={h.id}

@@ -100,15 +100,6 @@ export const FIQH_CATEGORIES = [
   },
 ];
 
-// ── Fiqh Madhabs (schools of thought) — for filter ───────────
-export const FIQH_MADHABS = [
-  { id: "all", label: "All Madhabs" },
-  { id: "hanafi", label: "Hanafi  — حنفي" },
-  { id: "maliki", label: "Maliki  — مالكي" },
-  { id: "shafii", label: "Shafi'i — شافعي" },
-  { id: "hanbali", label: "Hanbali — حنبلي" },
-];
-
 // ── Helper — get category by id ───────────────────────────────
 export const getFiqhCategoryById = (id) =>
   FIQH_CATEGORIES.find((c) => c.id === id) ?? FIQH_CATEGORIES[0];

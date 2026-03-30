@@ -215,8 +215,9 @@ const HadithSection = () => {
         <div className="mt-8 text-center">
           <Link
             to="/hadith"
-            className="btn-secondary border-snow/30 text-snow
-                                        hover:bg-snow/10 hover:border-snow/50"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md font-semibold
+             text-light border border-light
+             hover:bg-light/10 hover:border-light/50"
           >
             Browse All Hadith <ArrowRight size={15} />
           </Link>

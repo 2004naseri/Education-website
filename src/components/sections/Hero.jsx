@@ -134,10 +134,10 @@ const Hero = () => {
               to="/quran"
               className={cn(
                 "inline-flex items-center gap-2.5",
-                "px-8 py-4 text-base font-semibold font-body",
-                "bg-transparent text-snow rounded-[var(--radius-md)]",
-                "border border-snow/25",
-                "hover:bg-snow/10 hover:border-snow/40 hover:-translate-y-0.5",
+                "px-8 py-4 font-semibold font-body",
+                "bg-primary text-snow rounded-[var(--radius-md)]",
+                "border border-primary-light/40",
+                "hover:bg-primary-dark hover:border-primary-light hover:-translate-y-0.5",
                 "transition-all duration-300",
               )}
             >

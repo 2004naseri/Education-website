@@ -16,7 +16,6 @@ import {
 
 import { fiqhService } from "../../services/fiqh.service";
 import { queryKeys } from "../../services/querykeys";
-import { FIQH_MADHABS } from "../../data/fiqhCategories";
 
 import ArabicText from "../../components/sections/ArabicText";
 import Badge from "../../components/ui/Badge";
@@ -161,9 +160,6 @@ const FiqhDetailPage = () => {
                   <span>{difficultyInfo.icon}</span>
                   {difficultyInfo.label}
                 </Badge>
-                {topic.madhab === "all" && (
-                  <Badge variant="success">✓ All Madhabs</Badge>
-                )}
               </div>
 
               {/* Arabic title */}
@@ -213,7 +209,7 @@ const FiqhDetailPage = () => {
       <div className="container-custom py-12">
         <div className="max-w-4xl mx-auto">
           {/* Quick info cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3  gap-4 mb-12">
             <div
               className="p-5 bg-primary-soft border border-primary/10 rounded-[var(--radius-lg)]
                             flex items-center gap-3"
@@ -244,23 +240,6 @@ const FiqhDetailPage = () => {
                 </p>
                 <p className="font-body text-base font-semibold text-ink capitalize truncate">
                   {topic.category}
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="p-5 bg-surface border border-border rounded-[var(--radius-lg)]
-                            flex items-center gap-3"
-            >
-              <div className="w-12 h-12 rounded-lg bg-primary-soft flex items-center justify-center shrink-0">
-                <Users size={24} className="text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-body text-xs text-muted uppercase tracking-wider mb-0.5">
-                  Scope
-                </p>
-                <p className="font-body text-base font-semibold text-ink truncate">
-                  {topic.madhab === "all" ? "All Madhabs" : "Specific"}
                 </p>
               </div>
             </div>
@@ -339,49 +318,6 @@ const FiqhDetailPage = () => {
                     )}
                   </div>
                 ))}
-              </div>
-            </div>
-          )}
-
-          {/* ══ MADHAB VIEWS ══════════════════════════════════ */}
-          {topic.madhabViews?.length > 0 && (
-            <div className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center">
-                  <Users size={24} className="text-ink" />
-                </div>
-                <h2 className="font-display text-2xl sm:text-3xl font-normal text-ink">
-                  Views of the Four Madhabs
-                </h2>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {topic.madhabViews.map((view) => {
-                  const madhabInfo = FIQH_MADHABS.find(
-                    (m) => m.id === view.madhab,
-                  );
-                  return (
-                    <div
-                      key={view.madhab}
-                      className="p-6 bg-card border-2 border-border rounded-[var(--radius-xl)]
-                                 hover:border-primary hover:shadow-md transition-all duration-300"
-                    >
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                          <span className="font-arabic text-snow text-sm font-bold">
-                            {view.madhab[0].toUpperCase()}
-                          </span>
-                        </div>
-                        <p className="font-body text-lg font-bold text-primary">
-                          {madhabInfo?.label || view.madhab}
-                        </p>
-                      </div>
-                      <p className="font-body text-sm text-soft leading-relaxed">
-                        {view.summary}
-                      </p>
-                    </div>
-                  );
-                })}
               </div>
             </div>
           )}
