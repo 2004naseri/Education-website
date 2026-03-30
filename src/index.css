@@ -55,9 +55,11 @@
   /* ── TEXT ─────────────────────────────────────────────── */
   /* Named without "text-" prefix so classes are: text-base, text-soft, text-muted */
   --color-base: #1a1a2e; /* Main text → text-base   */
+  --color-ink: #1a1a2e; /* Alias for base → text-ink */
   --color-soft: #4a5568; /* Body text → text-soft   */
   --color-muted: #9ca3af; /* Captions → text-muted   */
   --color-light: #ffffff; /* On dark bg → text-light */
+  --color-snow: #ffffff; /* Alias for light → text-snow */
 
   /* ── BORDERS ──────────────────────────────────────────── */
   --color-border: #e8dfd0; /* Default border          */
@@ -158,9 +160,11 @@
   /* ── Text — ivory/cream for readability ──────────────────
      Especially important for Arabic Ayat and Hadith text    */
   --color-base: #f5f0e8; /* Warm ivory — main text    */
+  --color-ink: #f5f0e8; /* Alias for base → text-ink */
   --color-soft: #c8bfaa; /* Warm gray — secondary     */
   --color-muted: #7a7060; /* Muted warm — captions     */
   --color-light: #ffffff; /* Pure white                */
+  --color-snow: #ffffff; /* Alias for light → text-snow */
 
   /* ── Borders — warm charcoal lines ──────────────────────  */
   --color-border: #2e2a22; /* Subtle warm border        */

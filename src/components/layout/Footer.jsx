@@ -129,7 +129,7 @@ const Footer = () => {
               className="pl-4"
               style={{ borderLeft: `2px solid var(--color-accent)` }}
             >
-              <p className="font-arabic text-accent/80 text-base leading-loose text-right">
+              <p className="font-arabic text-accent/80  leading-loose text-right">
                 يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا وَالَّذِينَ أُوتُوا الْعِلْمَ
                 دَرَجَاتٍ
               </p>

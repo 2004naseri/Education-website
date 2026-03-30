@@ -343,7 +343,7 @@ const QuranVerseSection = () => {
 
               {/* Translation */}
               <p
-                className="font-body text-base sm:text-lg text-soft leading-[1.9] italic mb-4
+                className="font-body  sm:text-lg text-soft leading-[1.9] italic mb-4
                             max-w-xl mx-auto"
               >
                 "{featured.translation}"
@@ -417,7 +417,7 @@ const CTABanner = () => (
         <Link
           to="/books"
           className="inline-flex items-center gap-2 px-8 py-4
-                     bg-snow text-ink font-body font-semibold text-base
+                     bg-snow text-ink font-body font-semibold 
                      rounded-[var(--radius-md)] hover:bg-accent
                      transition-all duration-300 hover:-translate-y-0.5
                      shadow-[var(--shadow-lg)]"
@@ -427,7 +427,7 @@ const CTABanner = () => (
         <Link
           to="/about"
           className="inline-flex items-center gap-2 px-8 py-4
-                     bg-transparent text-snow font-body font-semibold text-base
+                     bg-transparent text-snow font-body font-semibold 
                      rounded-[var(--radius-md)] border border-snow/25
                      hover:bg-snow/10 hover:border-snow/40
                      transition-all duration-300"
