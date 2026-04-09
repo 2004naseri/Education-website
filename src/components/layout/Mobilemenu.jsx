@@ -116,7 +116,7 @@ const MobileMenu = () => {
         {/* Footer */}
         <div className="p-4 border-t border-border">
           <p className="font-body text-xs text-muted text-center">
-            NurPath © 2024
+            NurPath © {new Date().getFullYear()}
           </p>
         </div>
       </div>

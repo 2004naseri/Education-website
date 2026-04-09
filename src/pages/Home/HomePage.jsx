@@ -37,6 +37,7 @@ import HadithCard from "../../components/cards/HadithCard";
 
 // ── UI ────────────────────────────────────────────────────────
 import { cn } from "../../utils/cn";
+import ErrorState from "../../components/ui/ErrorState";
 
 // ── Data — home categories grid ───────────────────────────────
 import { HOME_CATEGORIES } from "../../data/categories";
@@ -109,7 +110,7 @@ const CategoriesSection = () => (
 // SECTION — Featured Books
 // ============================================================
 const BooksSection = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: queryKeys.books.featured(),
     queryFn: booksService.getFeatured,
   });
@@ -149,6 +150,12 @@ const BooksSection = () => {
               />
             ))}
           </div>
+        ) : isError ? (
+          <ErrorState
+            title="Failed to load books"
+            message={error?.message || "Unable to fetch featured books"}
+            onRetry={refetch}
+          />
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
             {books.map((book, i) => (
@@ -177,7 +184,7 @@ const BooksSection = () => {
 // SECTION — Daily Hadith
 // ============================================================
 const HadithSection = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: queryKeys.hadith.list({ featured: true }),
     queryFn: hadithService.getFeatured,
   });
@@ -207,6 +214,14 @@ const HadithSection = () => {
         <div className="mt-12 max-w-3xl mx-auto">
           {isLoading ? (
             <div className="skeleton h-64 rounded-[var(--radius-xl)]" />
+          ) : isError ? (
+            <div className="bg-white/10 backdrop-blur-sm rounded-[var(--radius-xl)] p-8">
+              <ErrorState
+                title="Failed to load hadith"
+                message={error?.message || "Unable to fetch featured hadith"}
+                onRetry={refetch}
+              />
+            </div>
           ) : hadith ? (
             <HadithCard hadith={hadith} showExplanation />
           ) : null}
@@ -231,7 +246,7 @@ const HadithSection = () => {
 // SECTION — Featured Articles
 // ============================================================
 const ArticlesSection = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: queryKeys.articles.featured(),
     queryFn: articlesService.getFeatured,
   });
@@ -269,6 +284,12 @@ const ArticlesSection = () => {
               />
             ))}
           </div>
+        ) : isError ? (
+          <ErrorState
+            title="Failed to load articles"
+            message={error?.message || "Unable to fetch featured articles"}
+            onRetry={refetch}
+          />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.map((article, i) => (
@@ -296,7 +317,7 @@ const ArticlesSection = () => {
 // SECTION — Quran Verse
 // ============================================================
 const QuranVerseSection = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: queryKeys.quran.featured(),
     queryFn: quranService.getFeaturedAyat,
   });
@@ -319,6 +340,14 @@ const QuranVerseSection = () => {
 
         {isLoading ? (
           <div className="mt-12 skeleton h-48 max-w-3xl mx-auto rounded-[var(--radius-xl)]" />
+        ) : isError ? (
+          <div className="mt-12 max-w-3xl mx-auto">
+            <ErrorState
+              title="Failed to load Quran verse"
+              message={error?.message || "Unable to fetch featured ayat"}
+              onRetry={refetch}
+            />
+          </div>
         ) : featured ? (
           <div className="mt-12 max-w-3xl mx-auto">
             {/* Featured Ayat card */}
@@ -421,7 +450,7 @@ const CTABanner = () => (
                      bg-snow text-ink font-body font-semibold 
                      rounded-[var(--radius-md)] hover:bg-accent
                      transition-all duration-300 hover:-translate-y-0.5
-                     shadow-[var(--shadow-lg)]"
+                     shadow-[var(--shadow-lg)] dark:text-gray-800"
         >
           <BookOpen size={18} /> Explore Library
         </Link>

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"c:\\\\Users\\\\DEll\\\\Desktop\\\\Projects\\\\Education website\\\\src\\\\components\\\\ui\"\" 2>&1 || echo \"Directory does not exist \")"
+    ]
+  }
+}
